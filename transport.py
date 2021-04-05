@@ -16,24 +16,22 @@ class Transport:
         return sum(trip.distance for trip in self.trips)
 
     def calculate_reachable_distance(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
-class Car (Transport):
+class Car(Transport):
     FUEL_CONSUMPTION_CAR = 0.12
 
     def calculate_reachable_distance(self):
         distance_covered = self.sum_trips_distance()
-        result = (self.fuel - (distance_covered *
-                               self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
-        return f"Топлива осталось на {result} км."
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
+        return f'Топлива осталось на {result} км'
 
 
-class Airplane (Transport):
+class Airplane(Transport):
     FUEL_CONSUMPTION_AIRPLANE = 200
 
     def calculate_reachable_distance(self):
         distance_covered = self.sum_trips_distance()
-        result = (self.fuel - (distance_covered *
-                               self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
-        return f"Топлива осталось на {result} (часы)"
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
+        return f'Топлива осталось на {result} часов'
