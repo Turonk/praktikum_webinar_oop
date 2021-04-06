@@ -30,9 +30,9 @@ class Transport:
 
 ```python
 class Transport:
-	def __init__(self, fuel):
-		self.fuel = fuel
-		self.trips = []
+    def __init__(self, fuel):
+        self.fuel = fuel
+        self.trips = []
 ```
 
 Эта запись нам говорит, что при создании экземпляра транспортного средства нам необходимо указать выданное ему количество топлива `fuel`, которое присвоим свойству `self.fuel`.
@@ -41,7 +41,7 @@ class Transport:
 
 ```python
 def __init__(self, toplivo):
-	self.f = toplivo
+    self.f = toplivo
 ```
 
 Так можно, но кому от этого проще? Названия подбираются для удобства, чтобы без комментариев можно было понять, какой передаваемый параметр записывается в какое поле (свойство) экземпляра класса.
@@ -66,12 +66,12 @@ https://pythonz.net/references/named/self/
 
 ```python
 class Transport:
-	def __init__(self, fuel):
-		self.fuel = fuel
-		self.trips = []
+    def __init__(self, fuel):
+        self.fuel = fuel
+        self.trips = []
 
-	def add_trip(self, trip):
-		self.trips.append(trip)
+    def add_trip(self, trip):
+        self.trips.append(trip)
 ```
 
 Метод `add_trip` должен получать на вход сведения о поездке (это будет экземпляр класса `Trip`, который мы создадим ниже) и добавлять ее в наш список `self.trips`. Добавление в конец списка осуществляется методом `.append(добавляемая сущность)`.
@@ -84,15 +84,15 @@ class Transport:
 
 ```python
 class Transport:
-	def __init__(self, fuel):
-		self.fuel = fuel
-		self.trips = []
-
-	def add_trip(self, trip):
-		self.trips.append(trip)
-
-	def sum_trips_distance(self):
-		return sum(trip.distance for trip in self.trips)
+    def __init__(self, fuel):
+        self.fuel = fuel
+        self.trips = []
+    
+    def add_trip(self, trip):
+        self.trips.append(trip)
+    
+    def sum_trips_distance(self):
+        return sum(trip.distance for trip in self.trips)
 ```
 
 Метод `sum_trips_distance(self)` возвращает нам сумму всех пройденных дистанций из списка экскурсий конкретного транспортного средства.
@@ -109,7 +109,7 @@ class Transport:
 
 ```python
 def calculate_reachable_distance(self):
-	raise NotImplementedError()
+    raise NotImplementedError()
 ```
 
 Для нашей задачи такого базового класса будет достаточно.
@@ -122,9 +122,9 @@ def calculate_reachable_distance(self):
 
 ```python
 class Trip:
-	def __init__(self, dist, comment = 'Не регламентировано'):
-		self.distance = dist
-		self.comment = comment
+    def __init__(self, dist, comment='Не регламентировано'):
+        self.distance = dist
+        self.comment = comment
 ```
 
 Запись `comment = 'Не регламентировано'` означает, что если мы не указываем при создании экземпляра класса значение для `comment`, то по умолчанию будет подставлено `'Не регламентировано'`.
@@ -135,22 +135,22 @@ class Trip:
 
 ```python
 class Car(Transport):
-	FUEL_CONSUMPTION_CAR = 0.12
+    FUEL_CONSUMPTION_CAR = 0.12
 
-	def calculate_reachable_distance(self):
-		distance_covered = self.sum_trips_distance()
-		result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
-		return f'Топлива осталось на {result} км'
+    def calculate_reachable_distance(self):
+        distance_covered = self.sum_trips_distance()
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
+        return f'Топлива осталось на {result} км'
 ```
 
 ```python
 class Airplane(Transport):
-	FUEL_CONSUMPTION_AIRPLANE = 200
+    FUEL_CONSUMPTION_AIRPLANE = 200
 
-	def calculate_reachable_distance(self):
-		distance_covered = self.sum_trips_distance()
-		result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
-		return f'Топлива осталось на {result} часов'
+    def calculate_reachable_distance(self):
+        distance_covered = self.sum_trips_distance()
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
+        return f'Топлива осталось на {result} часов'
 ```
 
 В каждом из созданных нами классов переопределим метод возвращающий количество километров, которое еще может проехать авто на остатке топлива, и время полета, на которое хватит топлива самолету.
@@ -187,42 +187,42 @@ class Airplane(Transport):
 
 ```python
 class Trip:
-	def __init__(self, dist, comment ="Не регламентировано"):
-		self.distance = dist
-		self.comment = comment
+    def __init__(self, dist, comment="Не регламентировано"):
+        self.distance = dist
+        self.comment = comment
 
 
 class Transport:
-	def __init__(self, fuel):
-		self.fuel = fuel
-		self.trips = []
+    def __init__(self, fuel):
+        self.fuel = fuel
+        self.trips = []
 
-	def add_trip(self, trip):
-		self.trips.append(trip)
+    def add_trip(self, trip):
+        self.trips.append(trip)
 
-	def sum_trips_distance(self):
-		return sum(trip.distance for trip in self.trips)
+    def sum_trips_distance(self):
+        return sum(trip.distance for trip in self.trips)
 
-	def calculate_reachable_distance(self):
-		raise NotImplementedError()
+    def calculate_reachable_distance(self):
+        raise NotImplementedError()
 
 
 class Car(Transport):
-	FUEL_CONSUMPTION_CAR = 0.12
+    FUEL_CONSUMPTION_CAR = 0.12
 
-	def calculate_reachable_distance(self):
-		distance_covered = self.sum_trips_distance()
-		result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
-		return f'Топлива осталось на {result} км'
+    def calculate_reachable_distance(self):
+        distance_covered = self.sum_trips_distance()
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_CAR)) // self.FUEL_CONSUMPTION_CAR
+        return f'Топлива осталось на {result} км'
 
 
 class Airplane(Transport):
-	FUEL_CONSUMPTION_AIRPLANE = 200
+    FUEL_CONSUMPTION_AIRPLANE = 200
 
-	def calculate_reachable_distance(self):
-		distance_covered = self.sum_trips_distance()
-		result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
-		return f'Топлива осталось на {result} часов'
+    def calculate_reachable_distance(self):
+        distance_covered = self.sum_trips_distance()
+        result = (self.fuel - (distance_covered * self.FUEL_CONSUMPTION_AIRPLANE)) // self.FUEL_CONSUMPTION_AIRPLANE
+        return f'Топлива осталось на {result} часов'
 ```
 
 </details>
